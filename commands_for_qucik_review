@@ -8,7 +8,7 @@ from fun_file_data_processing import *
 pd.set_option('display.max_columns', None)
 
 import regex as re
-
+------------------------------------------------------------------
 # In[mobile number cleaning]: Cleaning Mobile number in any format 
 # e.g: '123456789', '123PQ6789', '123-456-789'
 
@@ -31,13 +31,14 @@ def mobile_number_processing(mob_num):
         num_target = num_target//10 
         
     return mob_num_corr, counter_on_num_length
-
+------------------------------------------------------------------
 
 df_data_gold_cust = pd.read_csv('hybris_gravity_mapping_v2.txt',  
                              delimiter="\t",
                              encoding='latin-1',
                              error_bad_lines=False)
-                             
+
+------------------------------------------------------------------
 # In[Cleaning ]: Cleaning Mobile number in any format                              
 def data_cleaning_recency(value_row_item):
     if len(value_row_item) == 0:
@@ -45,6 +46,7 @@ def data_cleaning_recency(value_row_item):
     else:
         cust_recency = int(value_row_item)
     return cust_recency
+------------------------------------------------------------------
 
 def data_cleaning_atv(value_row_item):
     if len(value_row_item) == 0:
@@ -52,6 +54,7 @@ def data_cleaning_atv(value_row_item):
     else:
         avg_trxn_value = float(value_row_item)
     return avg_trxn_value
+------------------------------------------------------------------
 
 def data_cleaning_mobile(value_row_item):
     if len(value_row_item) == 10:
@@ -64,6 +67,7 @@ def data_cleaning_mobile(value_row_item):
         mobile_number = value_row_item
         status = 'invalid'
     return mobile_number, status 
+------------------------------------------------------------------
 
 def data_cleaning_agdbt(value_row_item):
     if len(value_row_item) == 0:
@@ -71,6 +75,7 @@ def data_cleaning_agdbt(value_row_item):
     else:
         agdbt_value = abs(int(value_row_item))
     return agdbt_value 
+------------------------------------------------------------------
 
 def data_cleaning_sales(value_row_item):
     if len((value_row_item)) == 0:
@@ -78,4 +83,4 @@ def data_cleaning_sales(value_row_item):
     else:
         row_value = float(value_row_item)
     return row_value 
-
+------------------------------------------------------------------
