@@ -1,0 +1,39 @@
+
+import pandas as pd 
+import numpy as np 
+import regex as re 
+import copy as cp
+from fun_file_data_processing import * 
+
+pd.set_option('display.max_columns', None)
+
+import regex as re
+
+# In[mobile number cleaning]: Cleaning Mobile number in any format 
+# e.g: '123456789', '123PQ6789', '123-456-789'
+
+def mobile_number_processing(mob_num):
+    if type(mob_num)==str:
+        mob_num_corr = re.sub('[^0-9]+', '', mob_num)
+        if len(mob_num_corr)==10 and type(mob_num_corr)==str:
+            mob_num_corr = int(mob_num_corr)
+        elif len(mob_num_corr)==10:
+            mob_num_corr = int(mob_num_corr)
+        else:
+            mob_num_corr = 0000000000
+    else:
+         mob_num_corr = int(mob_num)
+    
+    counter_on_num_length =0
+    num_target = mob_num_corr
+    while(num_target>0):
+        counter_on_num_length = counter_on_num_length+1
+        num_target = num_target//10 
+        
+    return mob_num_corr, counter_on_num_length
+
+
+df_data_gold_cust = pd.read_csv('hybris_gravity_mapping_v2.txt',  
+                             delimiter="\t",
+                             encoding='latin-1',
+                             error_bad_lines=False)
