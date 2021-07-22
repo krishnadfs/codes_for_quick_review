@@ -84,3 +84,8 @@ def data_cleaning_sales(value_row_item):
         row_value = float(value_row_item)
     return row_value 
 ------------------------------------------------------------------
+
+
+# reading date and time 
+import datetime 
+todays_date = datetime.datetime.today().strftime("%d-%d-%Y") 
